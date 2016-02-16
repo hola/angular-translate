@@ -1,5 +1,5 @@
 /*!
- * angular-translate - v2.9.0 - 2016-02-05
+ * angular-translate - v2.9.0-hola.0 - 2016-02-16
  * 
  * Copyright (c) 2016 The angular-translate team, Pascal Precht; Licensed MIT
  */
@@ -381,7 +381,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
         }
       };
 
-  var version = '2.9.0';
+  var version = '2.9.0-hola.0';
 
   // tries to determine the browsers language
   var getFirstBrowserLanguage = function () {
@@ -2729,7 +2729,7 @@ function translateDirective($translate, $q, $interpolate, $compile, $parse, $roo
           }
 
           if (angular.equals(translationId , '') || !angular.isDefined(translationId)) {
-            var iElementText = trim.apply(iElement.html().replace(/\s+/g, ' '));
+            var iElementText = trim.apply(iElement.html().trim().replace(/\s+/g, ' '));
 
             // Resolve translation id by inner html if required
             var interpolateMatches = iElementText.match(interpolateRegExp);

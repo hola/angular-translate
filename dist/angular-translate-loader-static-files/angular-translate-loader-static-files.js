@@ -1,5 +1,5 @@
 /*!
- * angular-translate - v2.9.0 - 2016-02-05
+ * angular-translate - v2.9.0-hola.0 - 2016-02-16
  * 
  * Copyright (c) 2016 The angular-translate team, Pascal Precht; Licensed MIT
  */
