@@ -1,5 +1,5 @@
 /*!
- * angular-translate - v2.9.0-hola.0 - 2016-02-16
+ * angular-translate - v2.11.0-hola.0 - 2016-04-13
  * 
  * Copyright (c) 2016 The angular-translate team, Pascal Precht; Licensed MIT
  */
@@ -19,6 +19,7 @@
   }
 }(this, function () {
 
+$translateMissingTranslationHandlerLog.$inject = ['$log'];
 angular.module('pascalprecht.translate')
 
 /**
@@ -42,7 +43,6 @@ function $translateMissingTranslationHandlerLog ($log) {
     $log.warn('Translation for ' + translationId + ' doesn\'t exist');
   };
 }
-$translateMissingTranslationHandlerLog.$inject = ['$log'];
 
 $translateMissingTranslationHandlerLog.displayName = '$translateMissingTranslationHandlerLog';
 return 'pascalprecht.translate';
