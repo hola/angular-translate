@@ -11,6 +11,24 @@
 | master        | [![Build Status](https://travis-ci.org/angular-translate/angular-translate.svg?branch=master)](https://travis-ci.org/angular-translate/angular-translate) |
 | canary        |[![Build Status](https://travis-ci.org/angular-translate/angular-translate.svg?branch=canary)](https://travis-ci.org/angular-translate/angular-translate)     |
 
+### Installation
+
+#### via NPM
+
+```
+npm install --save-dev angular-translate
+```
+
+#### via Bower
+
+```
+bower install --save-dev angular-translate
+```
+
+#### Others and details
+
+Visit our documentation site and have a look into the chapter [Installation](http://angular-translate.github.io/docs/#/guide/00_installation).
+
 ### Presentation (Dutch AngularJS Meetup 2013)
 [![angular-translate Talk](presentation.png)](https://www.youtube.com/watch?v=9CWifOK_Wi8)
 
