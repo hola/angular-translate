@@ -6,6 +6,7 @@ module.exports = function (grunt) {
   'use strict';
 
   require('load-grunt-tasks')(grunt);
+  var pkg = grunt.file.readJSON('package.json');
 
   // Returns configuration for bower-install plugin
   var loadTestScopeConfigurations = function () {
@@ -31,9 +32,15 @@ module.exports = function (grunt) {
     return config;
   };
 
+  var expandUrlsWithParams = function (urls, params) {
+    return urls.map(function (url) {
+      return grunt.template.process(url, {data : params});
+    });
+  };
+
   grunt.initConfig({
 
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: pkg,
 
     language: grunt.option('lang') || 'en',
 
@@ -56,6 +63,7 @@ module.exports = function (grunt) {
         'src/service/default-interpolation.js',
         'src/service/storage-key.js',
         'src/directive/translate.js',
+        'src/directive/translate-attr.js',
         'src/directive/translate-cloak.js',
         'src/directive/translate-namespace.js',
         'src/directive/translate-language.js',
@@ -82,7 +90,10 @@ module.exports = function (grunt) {
         ]
       },
 
-      test: ['test/**/*.js']
+      test: [
+        'test/**/*.js',
+        '!test/3rd/**/*'
+      ]
     },
 
     watch: {
@@ -282,7 +293,9 @@ module.exports = function (grunt) {
     uglify: {
 
       options: {
-        preserveComments: 'some'
+        output: {
+          comments: /(?:^!|@(?:license|preserve|cc_on))/
+        }
       },
 
       core: {
@@ -495,16 +508,6 @@ module.exports = function (grunt) {
       }
     },
 
-    express: {
-      server: {
-        options: {
-          port: 3005,
-          bases: '.',
-          server: __dirname + '/server.js'
-        }
-      }
-    },
-
     ngdocs: {
       options: {
         dest: 'tmp',
@@ -514,20 +517,31 @@ module.exports = function (grunt) {
         image: 'identity/logo/angular-translate-alternative/angular-translate_alternative_small2.png',
         imageLink: 'https://angular-translate.github.io',
         startPage: '/guide',
-        scripts: [
-          'https://cdn.rawgit.com/SlexAxton/messageformat.js/0.2.2/messageformat.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-animate.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-cookies.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-sanitize.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.8.1/angular-translate.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular-translate-interpolation-messageformat/2.8.1/angular-translate-interpolation-messageformat.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular-translate-storage-cookie/2.8.1/angular-translate-storage-cookie.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular-translate-storage-local/2.8.1/angular-translate-storage-local.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-url/2.8.1/angular-translate-loader-url.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-static-files/2.8.1/angular-translate-loader-static-files.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/angular-translate-handler-log/2.8.1/angular-translate-handler-log.js'
-        ],
+        scripts : []
+          .concat(expandUrlsWithParams([
+            'https://cdn.rawgit.com/SlexAxton/messageformat.js/<%= version %>/messageformat.js',
+          ], {
+            version : 'v1.0.2'
+          }))
+          .concat(expandUrlsWithParams([
+            'https://cdnjs.cloudflare.com/ajax/libs/angular.js/<%= version %>/angular.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/angular.js/<%= version %>/angular-animate.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/angular.js/<%= version %>/angular-cookies.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/angular.js/<%= version %>/angular-sanitize.js',
+          ], {
+            version : '1.5.5' // ngdocs not working with AJS 1.6
+          }))
+          .concat(expandUrlsWithParams([
+            'https://cdn.rawgit.com/angular-translate/bower-angular-translate/<%= version %>/angular-translate.js',
+            'https://cdn.rawgit.com/angular-translate/bower-angular-translate-interpolation-messageformat/<%= version %>/angular-translate-interpolation-messageformat.js',
+            'https://cdn.rawgit.com/angular-translate/bower-angular-translate-storage-cookie/<%= version %>/angular-translate-storage-cookie.js',
+            'https://cdn.rawgit.com/angular-translate/bower-angular-translate-storage-local/<%= version %>/angular-translate-storage-local.js',
+            'https://cdn.rawgit.com/angular-translate/bower-angular-translate-loader-url/<%= version %>/angular-translate-loader-url.js',
+            'https://cdn.rawgit.com/angular-translate/bower-angular-translate-loader-static-files/<%= version %>/angular-translate-loader-static-files.js',
+            'https://cdn.rawgit.com/angular-translate/bower-angular-translate-handler-log/<%= version %>/angular-translate-handler-log.js',
+          ], {
+            version : pkg.version
+          })),
         styles: ['docs/css/styles.css']
       },
       api: {
@@ -653,6 +667,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('default', ['jshint:all', 'karma']);
+  grunt.registerTask('lint', ['jshint:all']);
   grunt.registerTask('test', ['jshint:all', 'karma:unit', 'karma:midway']);
   grunt.registerTask('install-test', ['bower-install-simple']);
 
@@ -775,7 +790,6 @@ module.exports = function (grunt) {
 
   // For development purpose.
   grunt.registerTask('dev', ['jshint', 'karma:unit', 'concat', 'copy:demo', 'watch:livereload']);
-  grunt.registerTask('server', ['express', 'express-keepalive']);
 
   // Legacy support
   grunt.registerTask('changelog', ['conventionalChangelog']);

@@ -11,20 +11,20 @@ describe('pascalprecht.translate', function () {
     beforeEach(module('pascalprecht.translate', function ($translateProvider) {
       $translateProvider
         .translations('en', {
-          'EXISTING_TRANSLATION_ID': 'foo',
-          'ANOTHER_ONE': 'bar',
-          'TRANSLATION_ID': 'foo',
-          'TD_WITH_VALUE': 'Lorem Ipsum {{value}}',
-          'TRANSLATION_ID_2': 'Lorem Ipsum {{value}} + {{value}}',
-          'TRANSLATION_ID_3': 'Lorem Ipsum {{value + value}}',
-          'YET_ANOTHER': 'Hallo da!',
-          'TEXT_WITH_VALUE': 'This is a text with given value: {{value}}',
-          'HOW_ABOUT_THIS': '{{value}} + {{value}}',
-          'AND_THIS': '{{value + value}}',
-          'BLANK_VALUE': '',
-          'NAMESPACE': {
-            'SUBNAMESPACE': {
-              'TRANSLATION_ID': 'Namespaced translation'
+          'EXISTING_TRANSLATION_ID' : 'foo',
+          'ANOTHER_ONE' : 'bar',
+          'TRANSLATION_ID' : 'foo',
+          'TD_WITH_VALUE' : 'Lorem Ipsum {{value}}',
+          'TRANSLATION_ID_2' : 'Lorem Ipsum {{value}} + {{value}}',
+          'TRANSLATION_ID_3' : 'Lorem Ipsum {{value + value}}',
+          'YET_ANOTHER' : 'Hallo da!',
+          'TEXT_WITH_VALUE' : 'This is a text with given value: {{value}}',
+          'HOW_ABOUT_THIS' : '{{value}} + {{value}}',
+          'AND_THIS' : '{{value + value}}',
+          'BLANK_VALUE' : '',
+          'NAMESPACE' : {
+            'SUBNAMESPACE' : {
+              'TRANSLATION_ID' : 'Namespaced translation'
             }
           }
         })
@@ -190,7 +190,7 @@ describe('pascalprecht.translate', function () {
       });
 
       it('should return translation when used as an element', function () {
-        element =$compile('<translate>TRANSLATION_ID</translate>')($rootScope);
+        element = $compile('<translate>TRANSLATION_ID</translate>')($rootScope);
         $rootScope.$digest();
         expect(element.text()).toBe('foo');
 
@@ -253,7 +253,7 @@ describe('pascalprecht.translate', function () {
           element = $compile('<div translate="{{translationId}}"></div>')($rootScope);
           $rootScope.$digest();
           expect(element.text()).toBe('Lorem Ipsum');
-       });
+        });
 
         it('should replace interpolation directive with empty string if translation id is in content', function () {
           element = $compile('<div translate>TD_WITH_VALUE</div>')($rootScope);
@@ -301,7 +301,7 @@ describe('pascalprecht.translate', function () {
       describe('while values given as interpolation directive', function () {
 
         it('should replace interpolate directive when td id is attribute value', function () {
-          $rootScope.values = { value: 'foo' };
+          $rootScope.values = {value : 'foo'};
           element = $compile('<div translate="TD_WITH_VALUE" translate-values="{{values}}"></div>')($rootScope);
           $rootScope.$digest();
           expect(element.text()).toBe('Lorem Ipsum foo');
@@ -309,14 +309,14 @@ describe('pascalprecht.translate', function () {
 
         it('should replace interpolate directive when td id is attribute value and interpolation', function () {
           $rootScope.translationId = 'TD_WITH_VALUE';
-          $rootScope.values = { value: 'foo' };
+          $rootScope.values = {value : 'foo'};
           element = $compile('<div translate="{{translationId}}" translate-values="{{values}}"></div>')($rootScope);
           $rootScope.$digest();
           expect(element.text()).toBe('Lorem Ipsum foo');
         });
 
         it('should replace interpolate directive when td id is given as content', function () {
-          $rootScope.values = { value: 'foo' };
+          $rootScope.values = {value : 'foo'};
           element = $compile('<div translate translate-values="{{values}}">TRANSLATION_ID</div>')($rootScope);
           $rootScope.$digest();
           expect(element.text()).toBe('foo');
@@ -324,7 +324,7 @@ describe('pascalprecht.translate', function () {
 
         it('should replace interpolate directive when td id is given as content and as interpolation', function () {
           $rootScope.translationId = 'TRANSLATION_ID';
-          $rootScope.values = { values: 'foo' };
+          $rootScope.values = {values : 'foo'};
           element = $compile('<div translate translate-values="{{values}}">{{translationId}}</div>')($rootScope);
           $rootScope.$digest();
           expect(element.text()).toBe('foo');
@@ -336,7 +336,7 @@ describe('pascalprecht.translate', function () {
         it('should replace interpolate directive and keep updated when td id is attribute value and refers to scope data', function () {
           inject(function ($rootScope, $compile, $timeout) {
             $rootScope.translationId = 'TD_WITH_VALUE';
-            $rootScope.user = { name: 'foo' };
+            $rootScope.user = {name : 'foo'};
             element = $compile('<div translate="{{translationId}}" translate-values="{ value: user.name }"></div>')($rootScope);
             $rootScope.$digest();
             expect(element.text()).toBe('Lorem Ipsum foo');
@@ -358,7 +358,7 @@ describe('pascalprecht.translate', function () {
       $provide.factory('customInterpolation', function () {
 
         var translateInterpolator = {},
-            $locale;
+          $locale;
 
         // provide a method to set locale
         translateInterpolator.setLocale = function (locale) {
@@ -379,7 +379,7 @@ describe('pascalprecht.translate', function () {
       });
 
       $translateProvider.translations('en', {
-        'FOO': 'Yesssss'
+        'FOO' : 'Yesssss'
       });
 
       $translateProvider
@@ -412,12 +412,12 @@ describe('pascalprecht.translate', function () {
     beforeEach(module('pascalprecht.translate', function ($translateProvider) {
       $translateProvider
         .translations('en', {
-          'SIMPLE': 'Hello',
-          'FOO': 'hello my name is {{name}}',
-          'BAR': 'and I\'m {{age}} years old',
-          'BAZINGA': 'hello my name is {{name}} and I\'m {{age}} years old.',
-          'YAY': 'hello my name is {{name}} and I\'m {{age}} years old. {{foo}}',
-          'CAMEL': 'hello my name is {{firstName}} {{lastName}}.'
+          'SIMPLE' : 'Hello',
+          'FOO' : 'hello my name is {{name}}',
+          'BAR' : 'and I\'m {{age}} years old',
+          'BAZINGA' : 'hello my name is {{name}} and I\'m {{age}} years old.',
+          'YAY' : 'hello my name is {{name}} and I\'m {{age}} years old. {{foo}}',
+          'CAMEL' : 'hello my name is {{firstName}} {{lastName}}.'
         })
         .preferredLanguage('en');
     }));
@@ -457,7 +457,7 @@ describe('pascalprecht.translate', function () {
       expect(element.text()).toEqual('hello my name is Pascal and I\'m 22 years old.');
     });
 
-    it('should handle interpolation variables with camel casing', function() {
+    it('should handle interpolation variables with camel casing', function () {
       element = $compile('<p translate="CAMEL" translate-value-first-name="Glenn" translate-value-last-name="Jorde"></p>')($rootScope);
       $rootScope.$digest();
       expect(element.text()).toEqual('hello my name is Glenn Jorde.');
@@ -465,10 +465,10 @@ describe('pascalprecht.translate', function () {
 
     // addresses [issue #433](https://github.com/angular-translate/angular-translate/issues/433)
     it('should interpolate variables inside ng-if directives', function () {
-      var markup = '<div ng-if="true"><p translate="FOO" translate-value-name="{{name}}"></p></div>';
+      var markup = '<div><div ng-if="true"><p translate="FOO" translate-value-name="{{name}}"></p></div></div>';
       element = $compile(markup)($rootScope);
       $rootScope.$digest();
-      expect(element.next().text()).toEqual('hello my name is Pascal');
+      expect(angular.element(element[0].getElementsByTagName('div')[0]).text()).toEqual('hello my name is Pascal');
     });
 
     it('should interpolate variables inside ng-repeat directives', function () {
@@ -510,7 +510,7 @@ describe('pascalprecht.translate', function () {
     beforeEach(module('pascalprecht.translate', function ($translateProvider, $provide) {
 
       $translateProvider.translations('en', {
-        'hacking': '{{v}}'
+        'hacking' : '{{v}}'
       });
 
       $translateProvider.preferredLanguage('en');
@@ -537,7 +537,7 @@ describe('pascalprecht.translate', function () {
     beforeEach(module('pascalprecht.translate', function ($translateProvider, $provide) {
 
       $translateProvider.translations('en', {
-        'hacking': '{{v}}'
+        'hacking' : '{{v}}'
       });
 
       $translateProvider
@@ -559,6 +559,33 @@ describe('pascalprecht.translate', function () {
     });
   });
 
+  describe('translate-sanitize-strategy extension', function () {
+
+    var $rootScope, $compile, element;
+
+    beforeEach(module('pascalprecht.translate', function ($translateProvider, $provide) {
+
+      $translateProvider.translations('en', {
+        'hacking' : '{{v}}'
+      });
+
+      $translateProvider.preferredLanguage('en');
+    }));
+
+    beforeEach(inject(function (_$rootScope_, _$compile_) {
+      $rootScope = _$rootScope_;
+      $compile = _$compile_;
+    }));
+
+    it('should use overridden strategy', function () {
+      element = $compile('<p translate="hacking" translate-values="{v: \'<u>test</u>\'}" translate-sanitize-strategy="\'escaped\'"></p>')($rootScope);
+      $rootScope.$digest();
+      // Verify content is escaped.
+      expect(element.text()).toEqual('<u>test</u>'); // possible because text
+      expect(element.html()).toEqual('&lt;u&gt;test&lt;/u&gt;');
+    });
+  });
+
   describe('translate-compile extension (globally disabled)', function () {
 
     var $rootScope, $compile, element, $translate;
@@ -566,7 +593,7 @@ describe('pascalprecht.translate', function () {
     beforeEach(module('pascalprecht.translate', function ($translateProvider, $provide) {
 
       $translateProvider.translations('en', {
-        'text': '<span>{{name}} is a citizen of <strong ng-bind="world"></strong>!</span>'
+        'text' : '<span>{{name}} is a citizen of <strong ng-bind="world"></strong>!</span>'
       });
 
       $translateProvider.preferredLanguage('en');
@@ -623,7 +650,7 @@ describe('pascalprecht.translate', function () {
     beforeEach(module('pascalprecht.translate', function ($translateProvider, $provide) {
 
       $translateProvider.translations('en', {
-        'text': '<span>{{name}} is a citizen of <strong ng-bind="world"></strong>!</span>'
+        'text' : '<span>{{name}} is a citizen of <strong ng-bind="world"></strong>!</span>'
       });
 
       $translateProvider.preferredLanguage('en');
@@ -692,13 +719,13 @@ describe('pascalprecht.translate', function () {
     beforeEach(module('pascalprecht.translate', function ($translateProvider) {
       $translateProvider
         .translations('en', {
-          'ANOTHER_ONE': 'bar',
-          'TRANSLATION_ID': 'foo',
-          'TEXT_WITH_VALUE': 'This is a text with given value: {{value}}',
-          'ANOTHER_TEXT_WITH_VALUE': 'And here is another value: {{another_value}}',
-          'NAMESPACE': {
-            'SUBNAMESPACE': {
-              'TRANSLATION_ID': 'Namespaced translation'
+          'ANOTHER_ONE' : 'bar',
+          'TRANSLATION_ID' : 'foo',
+          'TEXT_WITH_VALUE' : 'This is a text with given value: {{value}}',
+          'ANOTHER_TEXT_WITH_VALUE' : 'And here is another value: {{another_value}}',
+          'NAMESPACE' : {
+            'SUBNAMESPACE' : {
+              'TRANSLATION_ID' : 'Namespaced translation'
             }
           }
         })
@@ -772,10 +799,10 @@ describe('pascalprecht.translate', function () {
     beforeEach(module('pascalprecht.translate', function ($translateProvider) {
       $translateProvider
         .translations('en', {
-          'HELLO': "Hello"
+          'HELLO' : "Hello"
         })
         .translations('de', {
-          'HELLO': "Hallo"
+          'HELLO' : "Hallo"
         })
         .preferredLanguage('en');
     }));
@@ -798,7 +825,7 @@ describe('pascalprecht.translate', function () {
       expect(element.html()).toBe('Hallo');
     });
 
-    it('should use forced language with translate-attr-*', function() {
+    it('should use forced language with translate-attr-*', function () {
       $rootScope.translateLanguage = 'de';
       element = $compile('<div translate translate-attr-title="HELLO" />')($rootScope);
       $rootScope.$digest();
@@ -813,14 +840,14 @@ describe('pascalprecht.translate', function () {
     beforeEach(module('pascalprecht.translate', function ($translateProvider) {
       $translateProvider
         .translations('en', {
-          'HELLO': "Hello"
+          'HELLO' : "Hello"
         })
         .translations('de', {
-          'HELLO': "Hallo",
-          'ONLY_DE': "Ich bin deutsch"
+          'HELLO' : "Hallo",
+          'ONLY_DE' : "Ich bin deutsch"
         })
-        .preferredLanguage('en')
-        .fallbackLanguage('de');
+        .fallbackLanguage('de')
+        .preferredLanguage('en');
     }));
 
     beforeEach(inject(function (_$compile_, _$rootScope_) {
@@ -850,6 +877,31 @@ describe('pascalprecht.translate', function () {
       element = $compile('<div translate translate-keep-content>ONLY_DE</divtranslate>')($rootScope);
       $rootScope.$digest();
       expect(element.html()).toBe('Ich bin deutsch');
+    });
+  });
+
+  describe('set keepContent globally', function () {
+
+    var $compile, $rootScope, element;
+
+    beforeEach(module('pascalprecht.translate', function ($translateProvider) {
+      $translateProvider
+        .translations('en', {
+          'HELLO' : "Hello"
+        })
+        .keepContent(true)
+        .preferredLanguage('en');
+    }));
+
+    beforeEach(inject(function (_$compile_, _$rootScope_) {
+      $compile = _$compile_;
+      $rootScope = _$rootScope_;
+    }));
+
+    it('should use leave the inner content without change', function () {
+      element = $compile('<div translate="UNKNOWN">My content</divtranslate>')($rootScope);
+      $rootScope.$digest();
+      expect(element.html()).toBe('My content');
     });
   });
 });

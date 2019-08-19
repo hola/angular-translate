@@ -10,7 +10,7 @@ angular.module('pascalprecht.translate')
  * "lang-en_US.json", "lang-de_DE.json", etc. Using this builder,
  * the response of these urls must be an object of key-value pairs.
  *
- * @param {object} options Options object, which gets prefix, suffix and key.
+ * @param {object} options Options object, which gets prefix, suffix, key, and fileMap
  */
 .factory('$translateStaticFilesLoader', $translateStaticFilesLoader);
 
@@ -36,14 +36,19 @@ function $translateStaticFilesLoader($q, $http) {
         throw new Error('Couldn\'t load static file, no prefix or suffix specified!');
       }
 
+      var fileUrl = [
+        file.prefix,
+        options.key,
+        file.suffix
+      ].join('');
+
+      if (angular.isObject(options.fileMap) && options.fileMap[fileUrl]) {
+        fileUrl = options.fileMap[fileUrl];
+      }
+
       return $http(angular.extend({
-        url: [
-          file.prefix,
-          options.key,
-          file.suffix
-        ].join(''),
-        method: 'GET',
-        params: ''
+        url: fileUrl,
+        method: 'GET'
       }, options.$http))
         .then(function(result) {
           return result.data;

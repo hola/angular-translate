@@ -1,3 +1,202 @@
+<a name="2.18.1"></a>
+## [2.18.1](https://github.com/angular-translate/angular-translate/compare/2.18.0...2.18.1) (2018-05-19)
+
+
+
+<a name="2.18.0"></a>
+# [2.18.0](https://github.com/angular-translate/angular-translate/compare/2.17.1...2.18.0) (2018-05-17)
+
+
+### Features
+
+* add test scope for AngularJS 1.7 ([7a44ddf](https://github.com/angular-translate/angular-translate/commit/7a44ddf))
+
+
+
+<a name="2.17.1"></a>
+## [2.17.1](https://github.com/angular-translate/angular-translate/compare/2.17.0...2.17.1) (2018-04-15)
+
+
+### Bug Fixes
+
+* **release:** fix zip artifacts on GitHub won't have `.` ([adb982f](https://github.com/angular-translate/angular-translate/commit/adb982f)), closes [#1840](https://github.com/angular-translate/angular-translate/issues/1840) [#1835](https://github.com/angular-translate/angular-translate/issues/1835)
+
+
+### Features
+
+* support google closure compiler ([fe47ae7](https://github.com/angular-translate/angular-translate/commit/fe47ae7))
+
+
+
+<a name="2.17.0"></a>
+# [2.17.0](https://github.com/angular-translate/angular-translate/compare/2.16.0...2.17.0) (2017-12-21)
+
+
+### Bug Fixes
+
+* **partial loader:** add check for added/removed part while refreshing ([3520418](https://github.com/angular-translate/angular-translate/commit/3520418)), closes [#1781](https://github.com/angular-translate/angular-translate/issues/1781)
+
+
+### Features
+
+* **service:** format bcp47 with script and language only correctly ([6c3b63e](https://github.com/angular-translate/angular-translate/commit/6c3b63e))
+
+
+
+<a name="2.16.0"></a>
+# [2.16.0](https://github.com/angular-translate/angular-translate/compare/2.15.2...2.16.0) (2017-11-01)
+
+
+### Bug Fixes
+
+* Stop using Angular.js lowercase internal method ([efc91c3](https://github.com/angular-translate/angular-translate/commit/efc91c3)), closes [#1797](https://github.com/angular-translate/angular-translate/issues/1797)
+* **service:** fix invalid waiting for `forceLanguage` ([0c1a266](https://github.com/angular-translate/angular-translate/commit/0c1a266)), closes [#1770](https://github.com/angular-translate/angular-translate/issues/1770)
+* **service:** ignore case when matching wildcards in available languages map ([7f25843](https://github.com/angular-translate/angular-translate/commit/7f25843))
+* **service:** respect case in available languages ([8fb6f5d](https://github.com/angular-translate/angular-translate/commit/8fb6f5d))
+
+
+### Features
+
+* **directive:** introduce attr translate-sanitize-strategy ([41c7e1f](https://github.com/angular-translate/angular-translate/commit/41c7e1f))
+* **loader-partial:** addPart specific urlTemplate override ([633fbc9](https://github.com/angular-translate/angular-translate/commit/633fbc9))
+* **service:** add sanitizeStrategy to $translate ([4a2c3ab](https://github.com/angular-translate/angular-translate/commit/4a2c3ab))
+
+
+
+<a name="2.15.2"></a>
+## [2.15.2](https://github.com/angular-translate/angular-translate/compare/2.15.1...v2.15.2) (2017-06-22)
+
+
+### Bug Fixes
+
+* Timezone and DST agnostic Unit test ([b3b04bd](https://github.com/angular-translate/angular-translate/commit/b3b04bd))
+* **$translateSanitizationProvider:** fix sanitization of boolean values ([70f4843](https://github.com/angular-translate/angular-translate/commit/70f4843)), closes [#1747](https://github.com/angular-translate/angular-translate/issues/1747)
+* **service:** fixed IE8 "Expected identifier" error ([a30e37a](https://github.com/angular-translate/angular-translate/commit/a30e37a))
+
+
+
+<a name="2.15.1"></a>
+## [2.15.1](https://github.com/angular-translate/angular-translate/compare/2.15.0...v2.15.1) (2017-03-04)
+
+
+### Bug Fixes
+
+* **cloak:** fix missing decloak introduced by optimize [#1694](https://github.com/angular-translate/angular-translate/issues/1694) ([a9ec123](https://github.com/angular-translate/angular-translate/commit/a9ec123)), closes [#1705](https://github.com/angular-translate/angular-translate/issues/1705)
+
+
+
+<a name="2.15.0"></a>
+# [2.15.0](https://github.com/angular-translate/angular-translate/compare/2.14.0...v2.15.0) (2017-02-27)
+
+
+### Features
+
+* **cookies:** use $cookies (1.4+) or $cookieStore (<1.4) ([51330f5](https://github.com/angular-translate/angular-translate/commit/51330f5))
+* **filter:** ensure no this==undefined will be injected ([5cb94cb](https://github.com/angular-translate/angular-translate/commit/5cb94cb))
+
+
+
+<a name="2.14.0"></a>
+# [2.14.0](https://github.com/angular-translate/angular-translate/compare/2.13.1...v2.14.0) (2017-02-11)
+
+
+### Bug Fixes
+
+* **$translate:** reassign language promises in refresh, update translation tables at the appropriate time, and simplify the routine ([351eb8f](https://github.com/angular-translate/angular-translate/commit/351eb8f))
+* **$translatePartialLoader:** prevent duplicate simultaneous HTTP requests ([8b2cea8](https://github.com/angular-translate/angular-translate/commit/8b2cea8))
+* **service:** add explicit promise rejection handler for $translate.use ([f4dc14a](https://github.com/angular-translate/angular-translate/commit/f4dc14a))
+* **service:** avoid sanitize/esape calls on null/undefined param values ([331e0dd](https://github.com/angular-translate/angular-translate/commit/331e0dd))
+* **service:** fix missing promise rejection handlers ([776993b](https://github.com/angular-translate/angular-translate/commit/776993b))
+* **staticFilesLoader:** do not use empty string as $http params ([ac2a038](https://github.com/angular-translate/angular-translate/commit/ac2a038)), closes [#1646](https://github.com/angular-translate/angular-translate/issues/1646)
+* **tests:** rewrite tests for AJS 1.6 compatibility ([7c9d2c9](https://github.com/angular-translate/angular-translate/commit/7c9d2c9))
+* **translate:** handle null translation ([1e57b4f](https://github.com/angular-translate/angular-translate/commit/1e57b4f)), closes [#665](https://github.com/angular-translate/angular-translate/issues/665)
+* **translateCloak:** incorrect element reference, inappropriate decloak at onReady, inappropriate decloak at $translateChangeSuccess ([a4d2795](https://github.com/angular-translate/angular-translate/commit/a4d2795))
+
+
+### Features
+
+* **dependencies:** update to messageformat 1.0.2 ([d4a0468](https://github.com/angular-translate/angular-translate/commit/d4a0468))
+* **service:** add translationId as param of custom interpolation service interface ([5de40de](https://github.com/angular-translate/angular-translate/commit/5de40de))
+* **tests:** add current AngularJS 1.6 in test scopes ([d8abdc5](https://github.com/angular-translate/angular-translate/commit/d8abdc5))
+
+
+
+<a name="2.13.1"></a>
+## [2.13.1](https://github.com/angular-translate/angular-translate/compare/2.13.0...v2.13.1) (2016-12-06)
+
+
+
+<a name="2.13.0"></a>
+# [2.13.0](https://github.com/angular-translate/angular-translate/compare/2.12.1...v2.13.0) (2016-10-30)
+
+
+### Bug Fixes
+
+* **service:** fix .instant() not handling TrustedValueHolderType correctly ([1ede55e](https://github.com/angular-translate/angular-translate/commit/1ede55e)), closes [#1618](https://github.com/angular-translate/angular-translate/issues/1618)
+* **service:** reject promise if handler returns undefined ([8fe6f23](https://github.com/angular-translate/angular-translate/commit/8fe6f23)), closes [#1600](https://github.com/angular-translate/angular-translate/issues/1600)
+* **service:** return empty string when found in fallback ([d76227e](https://github.com/angular-translate/angular-translate/commit/d76227e))
+
+
+### Features
+
+* **sanitize:** sanitize override on instant call ([01fecd0](https://github.com/angular-translate/angular-translate/commit/01fecd0))
+* **service:** add $translate.getTranslationTable(langKey) ([40f9e35](https://github.com/angular-translate/angular-translate/commit/40f9e35))
+* **service:** add file map lookup into static-files loader ([132e49a](https://github.com/angular-translate/angular-translate/commit/132e49a))
+* **service:** add mf configurer [#1619](https://github.com/angular-translate/angular-translate/issues/1619) ([676114b](https://github.com/angular-translate/angular-translate/commit/676114b))
+
+
+
+<a name="2.12.1"></a>
+## [2.12.1](https://github.com/angular-translate/angular-translate/compare/2.12.0...v2.12.1) (2016-09-15)
+
+
+### Bug Fixes
+
+* **build:** Add missing translate-attr directive to Gruntfile.js ([e70e9ad](https://github.com/angular-translate/angular-translate/commit/e70e9ad)), closes [#1577](https://github.com/angular-translate/angular-translate/issues/1577)
+* **style:** fix code style issues in ~-attr directive ([1848bc8](https://github.com/angular-translate/angular-translate/commit/1848bc8))
+
+
+
+<a name="2.12.0"></a>
+# [2.12.0](https://github.com/angular-translate/angular-translate/compare/2.11.1...v2.12.0) (2016-09-05)
+
+
+### Bug Fixes
+
+* **service:** fix infinite loop when fallback language async loading fails ([233f30c](https://github.com/angular-translate/angular-translate/commit/233f30c))
+* **service:** treat date param as-is (no sanitize/escape) ([ab1ecce](https://github.com/angular-translate/angular-translate/commit/ab1ecce)), closes [#1560](https://github.com/angular-translate/angular-translate/issues/1560)
+
+
+### Features
+
+* **directive:** introduce standalone translate-attr directive ([bcb0f2c](https://github.com/angular-translate/angular-translate/commit/bcb0f2c))
+* **partial loader:** add error response to errorHandler ([e3aba1c](https://github.com/angular-translate/angular-translate/commit/e3aba1c))
+* **service:** introduce new sanitize strategies: sce/sceParameters ([1624df5](https://github.com/angular-translate/angular-translate/commit/1624df5))
+* **service:** provide for sanitize/escape strategy 3rd argument context ([8504c60](https://github.com/angular-translate/angular-translate/commit/8504c60))
+
+
+
+<a name="2.11.1"></a>
+## [2.11.1](https://github.com/angular-translate/angular-translate/compare/2.11.0...v2.11.1) (2016-07-17)
+
+
+### Bug Fixes
+
+* **dependencies:** Update messageformat to ~0.3.1 ([04e11c9](https://github.com/angular-translate/angular-translate/commit/04e11c9))
+* **grunt:** add work-around for uglify preserveComments as expected ([32cdedb](https://github.com/angular-translate/angular-translate/commit/32cdedb)), closes [#1461](https://github.com/angular-translate/angular-translate/issues/1461)
+* **service:** allow instant function to also take care of post process configuration ([b7d7907](https://github.com/angular-translate/angular-translate/commit/b7d7907))
+* **service:** avoid sanitizing of functions ([492d8e5](https://github.com/angular-translate/angular-translate/commit/492d8e5)), closes [#1529](https://github.com/angular-translate/angular-translate/issues/1529)
+* **service:** Correct descriptive ngdocs to match parameters on the service calls ([91711f7](https://github.com/angular-translate/angular-translate/commit/91711f7))
+* **service:** fix interpolation issue with non-string as input ([fa4a80e](https://github.com/angular-translate/angular-translate/commit/fa4a80e)), closes [#1511](https://github.com/angular-translate/angular-translate/issues/1511)
+* **service:** fix lost of data in async loader / error in runtime ([5ee0c3e](https://github.com/angular-translate/angular-translate/commit/5ee0c3e))
+
+
+### Features
+
+* **directive:** introduce a global keepContent setting ([2015f79](https://github.com/angular-translate/angular-translate/commit/2015f79))
+
+
+
 <a name="2.11.0"></a>
 # [2.11.0](https://github.com/angular-translate/angular-translate/compare/2.10.0...v2.11.0) (2016-03-20)
 

@@ -19,6 +19,7 @@ module.exports = function (config) {
       shared.injectByScope(scope, 'angular-cookies/angular-cookies.js'),
       shared.injectByScope(scope, 'angular-sanitize/angular-sanitize.js'),
       shared.injectByScope(scope, 'angular-mocks/angular-mocks.js'),
+      'test/3rd/angular-mocks-async.js',
       'src/translate.js',
       'src/**/*.js',
       'test/unit/**/*.spec.js'
@@ -51,7 +52,7 @@ module.exports = function (config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: [process.env.TRAVIS ? 'Firefox' : 'Chrome'],
+    browsers: [process.env.TRAVIS ? 'Firefox' : (process.env.NO_HEADLESS ? 'Chrome' : 'ChromeHeadless')],
 
     captureTimeout: 60000,
 
