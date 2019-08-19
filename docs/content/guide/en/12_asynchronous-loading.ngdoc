@@ -276,7 +276,7 @@ There are a few things you have to know before you'll be able to create your fir
 error handler:
 
 1) The partial loader expects the error handler to have the following signature
-`function (part:String, langKey:String):Promise`
+`function (part:String, langKey:String, response: Response):Promise`
 2) You have to either resolve the promise with a translation table for the given
 part and language or reject it
 3) The partial loader will use the given translation table like it was successfully
@@ -288,7 +288,7 @@ Here is an example of a simple error handler:
 ```js
 angular.module('translation')
 .factory('MyErrorHandler', function ($q, $log) {
-  return function (part, lang) {
+  return function (part, lang, response) {
     $log.error('The "' + part + '/' + lang + '" part was not loaded.');
     return $q.when({});
   };
@@ -394,6 +394,19 @@ $translateProvider.preferredLanguage('en');
 
 **Note:** An Angular Translate user has been posted a nice solution [using Grunt](https://github.com/angular-translate/angular-translate/issues/921).
 Another user has published a solution [using Gulp](https://www.npmjs.com/package/gulp-ng-lang2js).
+
+If you use [UI-Router](https://ui-router.github.io/), there is a simpler solution 
+to avoid FOUC. Just add a new resolve to your global application state that returns
+a call to `$translate.onReady`, effectively blocking the rendering of the app until
+the first translation file is loaded:
+
+<pre>
+resolve: {
+  translateReady: ['$translate', function($translate) {
+    return $translate.onReady();
+  }]
+}
+</pre>
 
 Let's update our sample app accordingly to use an asynchronous loader! We'll use
 the staticFilesLoader. First, we have to pull the translation tables out of the

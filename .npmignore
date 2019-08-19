@@ -6,9 +6,11 @@
 /src/
 /test/
 /test_scopes/
+/tmp
 /.bowerrc
 /.editorconfig
 /.jshintrc
+/.github
 /.travis.yml
 /bower.json
 /CONTRIBUTING.md
